@@ -5,10 +5,7 @@ A simple Chrome extension to check the **mobile and desktop performance scores**
 ## Features
 
 - **Mobile & Desktop Performance Scores**: Check and compare mobile and desktop performance of websites.
-- **Detailed Metrics**: View key metrics such as FCP, LCP, TBT, CLS, and Speed Index.
-- **Toggle Functionality**: Show and hide detailed metrics for better user interaction.
 - **Color-Coded Performance Scores**: Visual indicators for performance with red (poor) and green (good).
-- **Responsive Design**: Works well on both mobile and desktop platforms with a modern, clean UI.
 
 ## Technologies Used
 
