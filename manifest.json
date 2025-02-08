@@ -1,15 +1,25 @@
 {
-    "manifest_version": 3,
-    "name": "Site Speed Checker",
-    "description": "Check the performance of 10 websites using PageSpeed Insights API.",
-    "version": "1.0",
-    "permissions": ["storage", "activeTab"],
-    
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "host_permissions": [
-      "https://www.googleapis.com/*"
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "Site Speed Checker",
+  "description": "Check the performance of 10 websites using PageSpeed Insights API.",
+  "version": "1.0",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ]
+}
