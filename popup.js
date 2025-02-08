@@ -37,28 +37,32 @@ function getPerformance(site) {
       name: site.name,
       mobileScore: Math.round(data[0].lighthouseResult.categories.performance.score * 100),
       desktopScore: Math.round(data[1].lighthouseResult.categories.performance.score * 100),
+      mobileMetrics: extractMetrics(data[0].lighthouseResult),
+      desktopMetrics: extractMetrics(data[1].lighthouseResult),
     };
   }).catch(() => ({
     name: site.name,
     mobileScore: "Error",
     desktopScore: "Error",
+    mobileMetrics: {},
+    desktopMetrics: {},
   }));
+}
+
+function extractMetrics(data) {
+  return {
+    FCP: data.audits['first-contentful-paint'].displayValue,
+    LCP: data.audits['largest-contentful-paint'].displayValue,
+    TBT: data.audits['total-blocking-time'].displayValue,
+    CLS: data.audits['cumulative-layout-shift'].displayValue,
+    SpeedIndex: data.audits['speed-index'].displayValue
+  };
 }
 
 function displayResults(results) {
   const resultContainer = document.getElementById("results");
   resultContainer.innerHTML = "";  // Clear previous results
   document.getElementById("loadingSpinner").style.display = "none";  // Hide loading spinner
-
-  // Add header row
-  const headerRow = `
-    <div class="result-row">
-      <div><strong>Site Name</strong></div>
-      <div><i class="fas fa-mobile-alt mobile-icon"></i></div>
-      <div><i class="fas fa-laptop desktop-icon"></i></div>
-    </div>
-  `;
-  resultContainer.innerHTML += headerRow;
 
   results.forEach(result => {
     const mobileClass = result.mobileScore < 60 ? "red" : "green";
@@ -67,11 +71,53 @@ function displayResults(results) {
     const resultItem = `
       <div class="result-row">
         <div class="site-name">${result.name}</div>
-        <div class="score ${mobileClass}">${result.mobileScore}</div>
-        <div class="score ${desktopClass}">${result.desktopScore}</div>
+        <table class="metrics-table">
+          <thead>
+            <tr>
+              <th>Metrics</th>
+              <th>Mobile Value</th>
+              <th>Desktop Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Performance</td>
+              <td class="${mobileClass}">${result.mobileScore}</td>
+              <td class="${desktopClass}">${result.desktopScore}</td>
+            </tr>
+            <tr>
+              <td>First Contentful Paint</td>
+              <td>${result.mobileMetrics.FCP}</td>
+              <td>${result.desktopMetrics.FCP}</td>
+            </tr>
+            <tr>
+              <td>Largest Contentful Paint</td>
+              <td>${result.mobileMetrics.LCP}</td>
+              <td>${result.desktopMetrics.LCP}</td>
+            </tr>
+            <tr>
+              <td>Total Blocking Time</td>
+              <td>${result.mobileMetrics.TBT}</td>
+              <td>${result.desktopMetrics.TBT}</td>
+            </tr>
+            <tr>
+              <td>Cumulative Layout Shift</td>
+              <td>${result.mobileMetrics.CLS}</td>
+              <td>${result.desktopMetrics.CLS}</td>
+            </tr>
+            <tr>
+              <td>Speed Index</td>
+              <td>${result.mobileMetrics.SpeedIndex}</td>
+              <td>${result.desktopMetrics.SpeedIndex}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        </div>
       </div>
     `;
-
     resultContainer.innerHTML += resultItem;
+
+    
   });
 }
