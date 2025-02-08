@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Site Speed Checker</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
       body {
         font-family: 'Arial', sans-serif;
-        padding: 10px 20px;
-        width: 350px;
+        padding: 20px;
         background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       h3 {
         text-align: center;
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 24px;
         color: #333;
+        margin-bottom: 30px;
       }
       button {
         padding: 12px;
@@ -42,40 +48,77 @@
       .result-container {
         margin-top: 20px;
       }
+
+      /* Styling for the site table */
       .result-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        margin: 10px 0;
         background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
       }
-      
-      .result-row div {
-        flex: 1;
+
+      .site-name {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
         text-align: center;
       }
-      .site-name {
+
+      .metrics-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .metrics-table th,
+      .metrics-table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+
+      .metrics-table th {
+        background-color: #f1f1f1;
         font-weight: bold;
         color: #333;
       }
-      .score {
-        font-weight: bold;
+
+      .metrics-table td {
         font-size: 16px;
       }
-      .score .mobile-icon, .score .desktop-icon {
-        margin-right: 5px;
-        font-size: 16px;
+
+      .metrics-table .mobile-cell,
+      .metrics-table .desktop-cell {
+        padding: 10px;
       }
-      .mobile-icon, .desktop-icon {
-        margin-right: 5px;
-        font-size: 16px;
+
+      .metrics-box {
+        display: none;
+        margin-top: 20px;
       }
+
+      .toggle-metrics-btn {
+        cursor: pointer;
+        color: #007bff;
+        background: none;
+        border: none;
+        font-size: 16px;
+        text-align: center;
+        display: block;
+        margin: 10px 0;
+      }
+
+      .toggle-metrics-btn:hover {
+        color: #0056b3;
+      }
+
       .red {
         color: #e74c3c;
       }
+
       .green {
         color: #2ecc71;
       }
